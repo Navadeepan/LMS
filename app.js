@@ -19,7 +19,7 @@ const port=3000
 
 // routes
 //app.use(require("./routes/index"))
-//app.use(require("./routes/todo"))
+app.use(require("./routes/Tasks"))
 
 
 // import of schema 
@@ -51,19 +51,7 @@ app.get("/courses",function(req,res){
   res.render('courses')
 })
 
-app.get("/tasks",async(req, res) =>{
-  const allTask= await task.find();
-  res.render("Tasks", {task: allTask})
-})
-app.get("/delete/task/:_id", (req, res) => {
-  const { _id } = req.params;
-  task.deleteOne({ _id })
-    .then(() => {
-      console.log("Deleted Task Successfully!");
-      res.redirect("/tasks");
-    })
-    .catch((err) => console.log(err));
-});
+
 
 app.get("/profile",function(req,res){
   const id = '6327379ea3c9fd85987480b4';
@@ -111,16 +99,5 @@ mongoose.connect(dburl, {useNewUrlParser:true,useUnifiedTopology:true})
     
   });
 
-  app.post("/add/task", (req, res) => {
-    const newTask = new task({task:req.body.task});
-
-    // save the todo
-    newTask
-      .save()
-      .then(() => {
-        console.log("Successfully added task!");
-        res.redirect("/tasks");
-      })
-      .catch((err) => console.log(err));
-  })
+  
 
