@@ -2,7 +2,7 @@ const User = require("../models/userSchema");
 
 module.exports.register_get = (req, res) => {
   res.render("Register");
-  console.log("User on Register page");
+  console.log("Current page:Register");
 };
 
 module.exports.register_post = async (req, res) => {

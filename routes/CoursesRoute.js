@@ -1,7 +1,6 @@
 const router = require("express").Router();
+const CoursesController = require("../controllers/CoursesController")
 
-router.get("/courses", function (req, res) {
-  res.render("courses");
-});
+router.get("/courses", CoursesController.courses_get);
 
 module.exports = router;
