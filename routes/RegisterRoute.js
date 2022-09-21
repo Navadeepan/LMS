@@ -1,23 +1,8 @@
 const router = require("express").Router();
-const user = require("../models/registerSchema");
+const RegisterController = require("../controllers/RegisterController");
 
-router.get("/Register", function (req, res) {
-  res.render("Register");
-});
+router.get("/Register", RegisterController.register_get);
 
-router.post("/Register", function (req, res) {
-  let userdata = new user({
-    name: req.body.name,
-    email: req.body.email,
-    password: req.body.password,
-    confirmPassword: req.body.confirmPassword,
-  });
-  userdata
-    .save()
-    .then(() => {
-      res.send("Successfully registered");
-    })
-    .catch((err) => console.log(err));
-});
+router.post("/Register", RegisterController.register_post);
 
 module.exports = router;

@@ -24,7 +24,7 @@ app.use(require("./routes/CoursesRoute"));
 app.use(require("./routes/ProfileRoute"));
 
 // import of schema
-const user = require("./models/registerSchema");
+const user = require("./models/userSchema");
 const task = require("./models/taskSchema");
 
 // body-parser
@@ -61,6 +61,6 @@ app.get("/logout", function (req, res) {
 const dburl =
   "mongodb+srv://navadeepan:navadeepan@learnandbuild.tmmen.mongodb.net/test";
 mongoose
-  .connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(dburl, { useNewUrlParser: true, useUnifiedTopology: true, autoIndex: true })
   .then((result) => app.listen(port), console.log("DB Connection Successful"))
   .catch((err) => console.log(err));
