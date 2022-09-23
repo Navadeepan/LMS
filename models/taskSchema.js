@@ -1,15 +1,21 @@
-
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const tasks = new Schema({
-    task :{
-        type: String,
-        required:true
+const tasks = new Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
     },
-},{timestamps:true,versionKey:false})
+    task: {
+      type: [String],
+    },
+  },
+  { timestamps: true, versionKey: false }
+);
 
-const task = mongoose.model("task",tasks);
+const task = mongoose.model("task", tasks);
 
-
-module.exports = task
+module.exports = task;
