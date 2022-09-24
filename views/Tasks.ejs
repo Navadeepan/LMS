@@ -100,7 +100,7 @@
     <div id="taskContent">
         <div class="app-container" id="taskList">
           <h1 class="app-header">TASKS</h1>
-    <form action="/add/task" method="POST" class="d-flex">
+    <form action="/add/task" method="PUT" class="d-flex">
         <input type="text" text-color="white"  name="task" class="task-input" class="form-control" placeholder="Add New Task" v-model="tasks.name" @keyup.enter="newItem">
         <input type="submit" value="Add" class="submit-task"  title="Add Task">
         <!-- <input type="submit" value="Add Todo" class="btn btn-md btn-primary mx-2"> -->
@@ -108,11 +108,15 @@
     <label class="task-list-item-label">
     </label>
     <ul class="task-list">
-              <% task.forEach(tasks => { %>
+              <!-- <% task.forEach(tasks => { %>
                 <li class="list-group-item"><%= tasks.task %> <a href="/delete/task/<%= tasks._id %>"
                         class="delete-btn"></a></li>
         
-                <% }) %>
+                <% }) %> -->
+                <% task.forEach(function( eachTask){ %>
+                  <li class="list-group-item"> <%= eachTask.task %>  <a href="/delete/task/<%= eachTask %>" class="delete-btn"></a>
+                  </li>
+              <% }) %>
     </ul>
     </div>
     

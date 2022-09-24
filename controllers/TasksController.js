@@ -1,7 +1,7 @@
 const Task = require("../models/taskSchema");
 
 module.exports.tasks_get = async (req, res) => {
-  const allTask = await Task.find();
+  const allTask = await [Task.find()];
   res.render("Tasks", { task: allTask });
 };
 
