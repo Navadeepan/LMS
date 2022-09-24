@@ -1,33 +1,12 @@
 const router = require("express").Router();
-const task = require("../models/taskSchema");
+const TasksController = require("../controllers/TasksController");
 
-router.get("/tasks", async (req, res) => {
-  const allTask = await task.find();
-  res.render("Tasks", { task: allTask });
-});
+router.get("/tasks", TasksController.tasks_get);
 
-router.get("/delete/task/:_id", (req, res) => {
-  const { _id } = req.params;
-  task
-    .deleteOne({ _id })
-    .then(() => {
-      console.log("Deleted Task Successfully!");
-      res.redirect("/tasks");
-    })
-    .catch((err) => console.log(err));
-});
+router.get("/delete/task/:_id", TasksController.tasks_get_id);
 
-router.post("/add/task", (req, res) => {
-  const newTask = new task({ task: req.body.task });
+//router.post("/add/task", TasksController.tasks_post);
 
-  // save the todo
-  newTask
-    .save()
-    .then(() => {
-      console.log("Successfully added task!");
-      res.redirect("/tasks");
-    })
-    .catch((err) => console.log(err));
-});
+router.put("/add/task", TasksController.tasks_put);
 
 module.exports = router;
